@@ -43,14 +43,13 @@ impl Fetch {
             .write_all(HTTP_GET_REQUEST)
             .map_err(|_e| Error::StreamWrite(self.addr()))?;
 
-        let Some(cert_bytes) = stream
-            .peer_certificate()
-            .map_err(|err| {
-                eprint!("{err:?}");
-                Error::RetrievePeerCertificate
-            })? else {
-                return Err(Error::CertificateNotFound(self.addr()));
-            };
+        let Some(cert_bytes) = stream.peer_certificate().map_err(|err| {
+            eprint!("{err:?}");
+            Error::RetrievePeerCertificate
+        })?
+        else {
+            return Err(Error::CertificateNotFound(self.addr()));
+        };
         let der_encoded = cert_bytes.to_der().map_err(Error::DerEncodedRetrieval)?;
         let certificate = Certificate::from_der(&der_encoded);
 

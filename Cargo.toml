@@ -17,9 +17,9 @@ name = "certs"
 path = "src/bin/main.rs"
 
 [dependencies]
-clap = { version = "4.0.32", features = ["derive"] }
-color-eyre = "0.6.2"
-native-tls = "0.2.11"
-thiserror = "1.0.40"
-url = "2.3.1"
-x509-parser = "0.15.0"
+clap = { version = "4.5", features = ["derive"] }
+color-eyre = "0.6"
+native-tls = "0.2"
+thiserror = "2"
+url = "2.5"
+x509-parser = "0.18.0"
